@@ -19,3 +19,20 @@ spec:
   serviceAccountName: prometheus
   version: v2.22.1
   serviceMonitorSelector: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  labels:
+    app: prometheus
+spec:
+  ports:
+  - name: web
+    port: 9090
+    targetPort: web
+  selector:
+    app: prometheus
+  sessionAffinity: ClientIP
+  
+ ---
